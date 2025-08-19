@@ -91,7 +91,7 @@ graph TB
         A --> E[Audio Player]
     end
     
-    subgraph "Backend (FastAPI + Python)"
+    subgraph "backend (FastAPI + Python)"
         F[FastAPI Server] --> G[PDF Extractor]
         F --> H[Vector Database Manager]
         F --> I[AI Insights Manager]
@@ -126,7 +126,7 @@ graph TB
 sequenceDiagram
     participant U as User
     participant F as Frontend
-    participant B as Backend
+    participant B as backend
     participant G as Gemini AI
     participant T as TTS Service
     participant V as Vector DB
@@ -168,7 +168,7 @@ Adobe-Finals-TeamX/
 │   ├── 📁 public/              # Static Assets
 │   └── package.json            # Frontend Dependencies
 │
-├── 📁 Backend/                  # FastAPI Python Backend
+├── 📁 backend/                  # FastAPI Python backend
 │   ├── pdf_extractor.py        # Main API Server
 │   ├── vector_db_manager.py    # Vector Database Management
 │   ├── ai_insights_manager.py  # AI Insights Generation
@@ -293,10 +293,10 @@ git clone <your-repo-url>
 cd Adobe-Finals-TeamX
 ```
 
-#### 2️⃣ Backend Setup
+#### 2️⃣ backend Setup
 
 ```bash
-cd Backend
+cd backend
 
 # Install Python dependencies
 pip install -r requirements.txt
@@ -491,7 +491,7 @@ GET /health
 Response:
 {
   "status": "healthy",
-  "message": "Backend is running"
+  "message": "backend is running"
 }
 ```
 
@@ -541,7 +541,7 @@ Response:
 | **AI Generation** | Google Gemini 2.5 Flash | Insights and scripts |
 | **Text-to-Speech** | Azure OpenAI TTS | Audio synthesis |
 | **Frontend** | React + TypeScript | User interface |
-| **Backend** | FastAPI | API server |
+| **backend** | FastAPI | API server |
 | **Styling** | Tailwind CSS | Responsive design |
 | **Container** | Docker | Deployment |
 
@@ -628,8 +628,8 @@ We welcome contributions! Please follow these guidelines:
 ### 🧪 Testing
 
 ```bash
-# Backend tests
-cd Backend
+# backend tests
+cd backend
 python -m pytest
 
 # Frontend tests
