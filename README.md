@@ -187,8 +187,8 @@ DocMind-AI/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/docmind-ai.git
-cd docmind-ai
+git clone https://github.com/harshbhaskerwar28/Adobe-DocMind_AI-TeamX.git
+cd Adobe-DocMind_AI-TeamX
 ```
 
 ### 2️⃣ Backend Setup
