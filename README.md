@@ -3,10 +3,11 @@
 <div align="center">
 
 ![DocMind AI Logo](https://img.shields.io/badge/DocMind-AI%20Powered-blue?style=for-the-badge&logo=artificial-intelligence)
-![Python](https://img.shields.io/badge/Python-3.8+-green?style=for-the-badge&logo=python)
+![Python](https://img.shields.io/badge/Python-3.11+-green?style=for-the-badge&logo=python)
 ![React](https://img.shields.io/badge/React-18+-blue?style=for-the-badge&logo=react)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green?style=for-the-badge&logo=fastapi)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green?style=for-the-badge&logo=fastapi)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue?style=for-the-badge&logo=typescript)
+![Docker](https://img.shields.io/badge/Docker-Ready-blue?style=for-the-badge&logo=docker)
 
 **Transform your documents into actionable insights with AI-powered analysis, semantic search, and intelligent podcast generation.**
 
@@ -43,6 +44,7 @@ DocMind AI is a cutting-edge document analysis platform that leverages artificia
 - **📊 Strategic Insights**: Uncover hidden patterns and opportunities
 - **🎯 Real-time Processing**: Instant analysis and generation capabilities
 - **📱 Responsive Design**: Beautiful UI that works on all devices
+- **🐳 Docker Ready**: Single command deployment for production
 
 ---
 
@@ -53,7 +55,7 @@ DocMind AI is a cutting-edge document analysis platform that leverages artificia
 | Feature | Description | Technology |
 |---------|-------------|------------|
 | **Document Processing** | Extract and analyze PDF content with high accuracy | PyMuPDF, FastAPI |
-| **Semantic Search** | Find related concepts across documents | Vector Database, Embeddings |
+| **Semantic Search** | Find related concepts across documents | FAISS, Sentence Transformers |
 | **AI Insights** | Generate strategic analysis and recommendations | Google Gemini AI |
 | **Podcast Generation** | Convert text to engaging audio content | Azure OpenAI TTS |
 | **Similarity Analysis** | Discover connections between documents | Semantic Similarity |
@@ -61,7 +63,7 @@ DocMind AI is a cutting-edge document analysis platform that leverages artificia
 ### 🎙️ Advanced Audio Features
 
 - **Text-to-Speech Podcasts**: Generate professional audio content from selected text
-- **Multi-Voice Narration**: Natural alternating male/female voices
+- **Multi-Voice Narration**: Natural alternating male/female voices (coral/onyx)
 - **Audio Player Controls**: Play, pause, seek, volume control, and download
 - **Real-time Generation**: 5-minute timeout for complex audio processing
 - **MP3 Format**: High-quality audio output for all devices
@@ -91,7 +93,7 @@ graph TB
     
     subgraph "Backend (FastAPI + Python)"
         F[FastAPI Server] --> G[PDF Extractor]
-        F --> H[Vector Database]
+        F --> H[Vector Database Manager]
         F --> I[AI Insights Manager]
         F --> J[TTS Generator]
         F --> K[Static File Server]
@@ -100,7 +102,7 @@ graph TB
     subgraph "External Services"
         L[Google Gemini AI] --> I
         M[Azure OpenAI TTS] --> J
-        N[Vector Database] --> H
+        N[FAISS Vector DB] --> H
     end
     
     subgraph "Data Flow"
@@ -152,123 +154,181 @@ sequenceDiagram
 ### 🗂️ Project Structure
 
 ```
-DocMind-AI/
+Adobe-Finals-TeamX/
 ├── 📁 frontend/                 # React TypeScript Application
 │   ├── 📁 src/
 │   │   ├── 📁 components/       # Reusable UI Components
+│   │   │   ├── 📁 layout/       # Layout Components
+│   │   │   └── 📁 ui/           # UI Components
 │   │   ├── 📁 pages/           # Main Application Pages
 │   │   ├── 📁 contexts/        # React Context Providers
 │   │   ├── 📁 hooks/           # Custom React Hooks
 │   │   ├── 📁 utils/           # Utility Functions
-│   │   └── 📁 types/           # TypeScript Type Definitions
+│   │   └── 📁 lib/             # Library Functions
 │   ├── 📁 public/              # Static Assets
 │   └── package.json            # Frontend Dependencies
 │
-├── 📁 backend/                  # FastAPI Python Backend
+├── 📁 Backend/                  # FastAPI Python Backend
 │   ├── pdf_extractor.py        # Main API Server
 │   ├── vector_db_manager.py    # Vector Database Management
 │   ├── ai_insights_manager.py  # AI Insights Generation
 │   ├── requirements.txt        # Python Dependencies
 │   └── 📁 static/              # Generated Audio Files
-└── 
+│
+├── 📄 Dockerfile               # Multi-stage Docker build
+├── 📄 .dockerignore            # Docker ignore patterns
+├── 📄 build.sh                 # Build script
+└── 📄 README.md               # This file
 ```
 
 ---
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### 🔑 Adobe Embed API Setup (Important!)
+Before running the Docker container, ensure your Adobe Embed API key is properly configured:
 
-- **Node.js** (v18 or higher)
-- **Python** (v3.8 or higher)
-- **pip** (Python package manager)
-- **npm** or **yarn** (Node package manager)
+1. **Get Adobe Embed API Key**: Visit [Adobe Embed API](https://www.adobe.com/go/dcsdks_credentials)
+2. **Configure Domain**: Add `localhost` to your Adobe API key's allowed domains
+3. **Test Domain**: Ensure your app works at `http://localhost:8080` (not `127.0.0.1:8080`)
 
-### 1️⃣ Clone the Repository
+### 🐳 Docker Deployment (Recommended)
 
-```bash
-git clone https://github.com/harshbhaskerwar28/Adobe-DocMind_AI-TeamX.git
-cd Adobe-DocMind_AI-TeamX
-```
-
-### 2️⃣ Backend Setup
+The Adobe evaluation team will use this **exact command** with their own API keys:
 
 ```bash
-cd backend
-pip install -r requirements.txt
-python pdf_extractor.py
+docker run \
+  -e ADOBE_EMBED_API_KEY=<THEIR_ADOBE_KEY> \
+  -e LLM_PROVIDER=gemini \
+  -e GOOGLE_API_KEY=<THEIR_GOOGLE_KEY> \
+  -e GEMINI_MODEL=gemini-2.5-flash \
+  -e TTS_PROVIDER=azure \
+  -e AZURE_TTS_KEY=<THEIR_AZURE_KEY> \
+  -e AZURE_TTS_ENDPOINT=<THEIR_AZURE_ENDPOINT> \
+  -e AZURE_TTS_DEPLOYMENT=tts \
+  -p 8080:8080 \
+  adobe-finals-teamx:latest
 ```
 
-The backend will start on `http://localhost:8000`
+### 🔑 Required Environment Variables
 
-### 3️⃣ Frontend Setup
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `ADOBE_EMBED_API_KEY` | Adobe Embed API key for PDF embedding | `your_adobe_key_here` |
+| `LLM_PROVIDER` | LLM provider (set to `gemini`) | `gemini` |
+| `GOOGLE_API_KEY` | Google API key for Gemini LLM | `your_google_key_here` |
+| `GEMINI_MODEL` | Gemini model to use | `gemini-2.5-flash` |
+| `TTS_PROVIDER` | Text-to-speech provider | `azure` |
+| `AZURE_TTS_KEY` | Azure TTS API key | `your_azure_key_here` |
+| `AZURE_TTS_ENDPOINT` | Azure TTS endpoint URL | `https://your-resource.openai.azure.com/` |
+| `AZURE_TTS_DEPLOYMENT` | Azure TTS deployment name | `tts` |
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+### 🌐 Access the Application
 
-The frontend will start on `http://localhost:8080`
+Once the container is running, access the application at:
+**http://localhost:8080**
 
-### 4️⃣ Access the Application
+### 🚨 Common Issues & Solutions
 
-Open your browser and navigate to `http://localhost:8080`
+#### Adobe Embed API CORS Issues
+- **Problem**: Adobe API blocks requests from Docker containers
+- **Solution**: Ensure your Adobe API key has `localhost` in allowed domains
+- **Test**: Access via `http://localhost:8080` (not `127.0.0.1:8080`)
+
+#### Container Won't Start
+- **Problem**: Port 8080 already in use
+- **Solution**: Stop other services or use different port: `-p 8081:8080`
+
+#### Frontend Not Loading
+- **Problem**: Static files not found
+- **Solution**: Ensure Docker build completed successfully
+- **Check**: Run `docker logs <container_id>` for errors
 
 ---
 
 ## 🔧 Detailed Setup
 
-### Backend Configuration
+### 🐳 Docker Setup
 
-#### Environment Variables
-
-Create a `.env` file in the backend directory:
-
-```env
-# Google Gemini AI (Required for AI features)
-GOOGLE_API_KEY=your_google_gemini_api_key
-
-# Azure OpenAI TTS (Required for podcast generation)
-AZURE_OPENAI_API_KEY=your_azure_openai_api_key
-AZURE_OPENAI_ENDPOINT=your_azure_openai_endpoint
-AZURE_OPENAI_DEPLOYMENT=gpt-4o-mini-tts
-AZURE_OPENAI_API_VERSION=2025-03-01-preview
-```
-
-#### Python Dependencies
+#### 1. Build the Docker Image
 
 ```bash
-pip install fastapi uvicorn python-multipart
-pip install PyMuPDF python-dotenv
-pip install google-generativeai openai
-pip install chromadb sentence-transformers
+# Clone the repository
+git clone <your-repo-url>
+cd Adobe-Finals-TeamX
+
+# Build the Docker image
+docker build -t adobe-finals-teamx:latest .
 ```
 
-### Frontend Configuration
-
-#### Node.js Dependencies
+#### 2. Run with Your API Keys
 
 ```bash
-npm install react react-dom react-router-dom
-npm install @types/react @types/react-dom typescript
-npm install tailwindcss @tailwindcss/typography
-npm install lucide-react clsx tailwind-merge
-npm install @radix-ui/react-dialog @radix-ui/react-scroll-area
+docker run \
+  -e ADOBE_EMBED_API_KEY=your_adobe_key \
+  -e LLM_PROVIDER=gemini \
+  -e GOOGLE_API_KEY=your_google_key \
+  -e GEMINI_MODEL=gemini-2.5-flash \
+  -e TTS_PROVIDER=azure \
+  -e AZURE_TTS_KEY=your_azure_key \
+  -e AZURE_TTS_ENDPOINT=https://your-resource.openai.azure.com/ \
+  -e AZURE_TTS_DEPLOYMENT=tts \
+  -p 8080:8080 \
+  adobe-finals-teamx:latest
 ```
 
-#### Development Scripts
+### 🔧 Manual Development Setup
 
-```json
-{
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
-  }
-}
+#### Prerequisites
+
+- **Node.js** (v18 or higher)
+- **Python** (v3.11 or higher)
+- **pip** (Python package manager)
+- **npm** or **yarn** (Node package manager)
+
+#### 1️⃣ Clone the Repository
+
+```bash
+git clone <your-repo-url>
+cd Adobe-Finals-TeamX
 ```
+
+#### 2️⃣ Backend Setup
+
+```bash
+cd Backend
+
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Set environment variables
+export GOOGLE_API_KEY=your_google_key
+export AZURE_TTS_KEY=your_azure_key
+export AZURE_TTS_ENDPOINT=https://your-resource.openai.azure.com/
+
+# Start the backend server
+python run_server.py
+```
+
+The backend will start on `http://localhost:8000`
+
+#### 3️⃣ Frontend Setup
+
+```bash
+cd frontend
+
+# Install Node.js dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+The frontend will start on `http://localhost:5173`
+
+#### 4️⃣ Access the Application
+
+Open your browser and navigate to `http://localhost:5173`
 
 ---
 
@@ -295,7 +355,7 @@ Response:
 #### 🤖 AI Insights
 
 ```http
-POST /generate-ai-insights
+POST /ai-insights
 Content-Type: application/json
 
 {
@@ -305,14 +365,30 @@ Content-Type: application/json
 
 Response:
 {
-  "insights": [
-    {
-      "category": "Strategic Analysis",
-      "description": "Key insight description...",
-      "evidence": "Supporting evidence...",
-      "recommendations": ["Action item 1", "Action item 2"]
-    }
-  ]
+  "selected_text": "Original text...",
+  "insights": {
+    "summary": "AI-generated summary...",
+    "insights": [
+      {
+        "type": "discovery",
+        "title": "Key Insight Title",
+        "description": "Detailed insight description...",
+        "evidence": "Supporting evidence...",
+        "confidence": 0.95,
+        "impact": "High",
+        "category": "Strategic Analysis"
+      }
+    ],
+    "cross_document_analysis": {
+      "agreements": ["Agreement 1", "Agreement 2"],
+      "disagreements": ["Disagreement 1"],
+      "gaps": ["Gap 1", "Gap 2"],
+      "evolution": "Evolution description..."
+    },
+    "actionable_recommendations": ["Recommendation 1", "Recommendation 2"]
+  },
+  "related_documents": 5,
+  "analysis_timestamp": "2024-12-20T14:30:22"
 }
 ```
 
@@ -341,26 +417,57 @@ Response:
 #### 🔍 Semantic Similarities
 
 ```http
-POST /generate-similarities
+POST /similarity-search
 Content-Type: application/json
 
 {
-  "selected_text": "Text to find similarities for...",
-  "context": "SIMILARITY_REQUEST"
+  "query_text": "Text to find similarities for...",
+  "top_k": 10,
+  "min_similarity": 0.3
 }
 
 Response:
 {
-  "similarities": [
+  "query": "Original query text...",
+  "results": [
     {
-      "source_document": "document1.pdf",
-      "target_document": "document2.pdf",
+      "content": "Similar content found...",
+      "metadata": {
+        "file_id": "uuid",
+        "filename": "document.pdf",
+        "chunk_id": "chunk-uuid",
+        "chunk_index": 1,
+        "total_chunks": 5,
+        "timestamp": "2024-12-20T14:30:22",
+        "content_preview": "Preview of content..."
+      },
       "similarity_score": 0.85,
-      "matching_content": "Shared concept description...",
-      "source_context": "Context from source...",
-      "target_context": "Context from target..."
+      "similarity_percentage": 85
     }
-  ]
+  ],
+  "total_found": 5,
+  "search_timestamp": "2024-12-20T14:30:22"
+}
+```
+
+#### 💬 PDF Chatbot
+
+```http
+POST /api/pdf-chat
+Content-Type: application/json
+
+{
+  "question": "What is the main topic of this document?",
+  "pdf_content": "Document content...",
+  "pdf_name": "document.pdf"
+}
+
+Response:
+{
+  "answer": "AI-generated answer...",
+  "confidence": 0.92,
+  "is_relevant": true,
+  "context_used": "Relevant context from document..."
 }
 ```
 
@@ -376,6 +483,18 @@ All endpoints return consistent error responses:
 }
 ```
 
+### Health Check
+
+```http
+GET /health
+
+Response:
+{
+  "status": "healthy",
+  "message": "Backend is running"
+}
+```
+
 ---
 
 ## 🎯 Use Cases
@@ -385,24 +504,28 @@ All endpoints return consistent error responses:
 - **Literature Review**: Analyze research papers and find connections
 - **Citation Analysis**: Discover related works and references
 - **Research Synthesis**: Generate insights from multiple sources
+- **Study Material Creation**: Convert textbooks into audio content
 
 ### 💼 Business Intelligence
 
 - **Document Analysis**: Extract insights from reports and presentations
 - **Competitive Analysis**: Compare and analyze competitor documents
 - **Knowledge Management**: Organize and search company documents
+- **Strategic Planning**: Generate insights for business decisions
 
 ### 🎓 Educational Content
 
 - **Study Material Creation**: Convert textbooks into audio content
 - **Concept Mapping**: Visualize relationships between topics
 - **Learning Enhancement**: Generate podcasts from study materials
+- **Content Research**: Find related topics and sources
 
 ### 📰 Content Creation
 
 - **Podcast Production**: Convert articles into audio content
 - **Content Research**: Find related topics and sources
 - **Writing Assistance**: Generate insights for content creation
+- **Audio Content**: Create engaging audio from written content
 
 ---
 
@@ -414,23 +537,27 @@ All endpoints return consistent error responses:
 |-----------|------------|---------|
 | **Text Processing** | PyMuPDF | PDF text extraction |
 | **Semantic Search** | Sentence Transformers | Document embeddings |
-| **Vector Database** | ChromaDB | Similarity storage |
-| **AI Generation** | Google Gemini | Insights and scripts |
+| **Vector Database** | FAISS | Similarity storage |
+| **AI Generation** | Google Gemini 2.5 Flash | Insights and scripts |
 | **Text-to-Speech** | Azure OpenAI TTS | Audio synthesis |
 | **Frontend** | React + TypeScript | User interface |
 | **Backend** | FastAPI | API server |
 | **Styling** | Tailwind CSS | Responsive design |
+| **Container** | Docker | Deployment |
 
 ### 🚀 Performance Optimizations
 
+- **Multi-stage Docker Build**: Optimized image size
 - **Lazy Loading**: Components load on demand
 - **Caching**: localStorage for persistent data
 - **Optimistic Updates**: Immediate UI feedback
 - **Error Boundaries**: Graceful error handling
 - **Memory Management**: Efficient resource usage
+- **Health Checks**: Container monitoring
 
 ### 🔒 Security Features
 
+- **Environment Variables**: No hardcoded secrets
 - **CORS Configuration**: Secure cross-origin requests
 - **Input Validation**: Pydantic models for data validation
 - **Error Handling**: Secure error messages
@@ -444,6 +571,36 @@ All endpoints return consistent error responses:
 - **Cloud Compatible**: Docker-ready deployment
 - **Horizontal Scaling**: Stateless API design
 - **Caching Strategy**: Multiple caching layers
+- **Container Orchestration**: Kubernetes ready
+
+---
+
+## 🧪 Testing Checklist for Adobe Team
+
+The evaluation team should test these features:
+
+- [ ] **Docker Build**: `docker build -t adobe-finals-teamx:latest .`
+- [ ] **Container Startup**: Container starts within 30 seconds
+- [ ] **Health Check**: `curl http://localhost:8080/health`
+- [ ] **Application Access**: http://localhost:8080 loads successfully
+- [ ] **Document Upload**: Upload PDF documents (similar to Round 1A/1B)
+- [ ] **PDF Rendering**: View and interact with uploaded PDFs
+- [ ] **Text Selection**: Select text within PDF documents
+- [ ] **AI Insights**: Generate insights from selected text (within 10 seconds)
+- [ ] **Similarity Search**: Find similar content across documents
+- [ ] **Podcast Generation**: Create podcasts from selected content
+- [ ] **PDF Chatbot**: Ask questions about document content
+- [ ] **Adobe Embed Integration**: Verify PDF embedding functionality
+
+### 🚨 Troubleshooting
+
+If the container fails to start:
+
+1. **Check API Keys**: Ensure all required environment variables are set
+2. **Port Availability**: Ensure port 8080 is not in use
+3. **Docker Resources**: Ensure sufficient memory (4GB+ recommended)
+4. **Network**: Check internet connectivity for API calls
+5. **Docker Version**: Ensure Docker is up to date
 
 ---
 
@@ -472,12 +629,15 @@ We welcome contributions! Please follow these guidelines:
 
 ```bash
 # Backend tests
-cd backend
+cd Backend
 python -m pytest
 
 # Frontend tests
 cd frontend
 npm test
+
+# Docker testing
+./test-setup.sh
 ```
 
 ### 📚 Documentation
@@ -511,15 +671,18 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **FastAPI** for the excellent web framework
 - **React** for the powerful frontend library
 - **Tailwind CSS** for the beautiful design system
+- **Adobe** for the evaluation opportunity
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by the DocMind AI Team**
+**Made with ❤️ by TeamX - Adobe Finals 2024**
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/docmind-ai?style=social)](https://github.com/yourusername/docmind-ai)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/docmind-ai?style=social)](https://github.com/yourusername/docmind-ai)
-[![GitHub issues](https://img.shields.io/github/issues/yourusername/docmind-ai)](https://github.com/yourusername/docmind-ai/issues)
+[![GitHub stars](https://img.shields.io/github/stars/yourusername/adobe-finals-teamx?style=social)](https://github.com/yourusername/adobe-finals-teamx)
+[![GitHub forks](https://img.shields.io/github/forks/yourusername/adobe-finals-teamx?style=social)](https://github.com/yourusername/adobe-finals-teamx)
+[![GitHub issues](https://img.shields.io/github/issues/yourusername/adobe-finals-teamx)](https://github.com/yourusername/adobe-finals-teamx/issues)
+
+**AI-Powered Document Analysis Platform**
 
 </div>
