@@ -342,7 +342,8 @@ export function DocumentProvider({ children }: DocumentProviderProps) {
     try {
       // Use the working name/path based endpoint that's already proven to work
       console.log('Using name/path based delete endpoint for:', fileToRemove.name);
-      const response = await fetch('http://localhost:8000/api/remove-document', {
+      const apiBase = (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:8080').replace(/\/$/, '');
+      const response = await fetch(`${apiBase}/api/remove-document`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -388,7 +389,8 @@ export function DocumentProvider({ children }: DocumentProviderProps) {
     try {
       // Use the working name/path based endpoint that's already proven to work
       console.log('Using name/path based delete endpoint for:', fileToRemove.name);
-      const response = await fetch('http://localhost:8000/api/remove-document', {
+      const apiBase = (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:8080').replace(/\/$/, '');
+      const response = await fetch(`${apiBase}/api/remove-document`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
