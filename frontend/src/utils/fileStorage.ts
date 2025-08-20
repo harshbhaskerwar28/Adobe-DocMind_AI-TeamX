@@ -32,7 +32,8 @@ export async function saveFilesToFolder(files: File[]): Promise<FileInfo[]> {
       const formData = new FormData();
       formData.append('file', file);
       
-      const response = await fetch('http://localhost:8000/extract-pdf', {
+      const apiBase = (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:8080').replace(/\/$/, '');
+      const response = await fetch(`${apiBase}/extract-pdf`, {
         method: 'POST',
         body: formData,
       });
@@ -112,7 +113,8 @@ export async function uploadAndExtractFile(file: File): Promise<FileInfo & { con
     const formData = new FormData();
     formData.append('file', file);
     
-    const response = await fetch('http://localhost:8000/extract-pdf', {
+    const apiBase = (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:8080').replace(/\/$/, '');
+    const response = await fetch(`${apiBase}/extract-pdf`, {
       method: 'POST',
       body: formData,
     });
