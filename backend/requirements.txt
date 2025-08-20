@@ -127,3 +127,9 @@ wrapt
 yarl
 zipp
 zope.interface
+# Required runtime deps for the backend
+fastapi
+google-generativeai
+sentence-transformers
+faiss-cpu
+
