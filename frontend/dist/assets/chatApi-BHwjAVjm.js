@@ -1,1 +1,0 @@
-const n="http://localhost:8000";async function e(a){const t=await fetch(`${n}/api/pdf-chat`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(a)});if(!t.ok){const o=await t.json().catch(()=>({detail:"Unknown error"}));throw new Error(o.detail||`HTTP error! status: ${t.status}`)}return await t.json()}export{e as sendChatMessage};
