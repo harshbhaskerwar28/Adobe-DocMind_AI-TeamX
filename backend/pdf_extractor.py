@@ -1759,7 +1759,7 @@ def build_tts_prompt(selected_text: str) -> str:
     header = f"""
 You are a senior podcast writer. Create a natural, engaging **two-speaker** podcast conversation about the user's selected text.
 
-*** IMPORTANT: This will be converted to speech with REAL VOICES - Female Host (coral) and Male Guest (onyx) ***
+*** IMPORTANT: This will be converted to speech with REAL VOICES - Female Host (nova) and Male Guest (onyx) ***
 *** Make it sound like a REAL conversation between two people discussing the content ***
 
 SELECTED TEXT TO FOCUS ON:
@@ -1775,7 +1775,7 @@ SELECTED TEXT TO FOCUS ON:
 - Include brief pauses and transitions
 
 <!-- Speaker Personalities -->
-Sarah (Female Host - coral voice):
+Sarah (Female Host - nova voice):
 - Curious and engaging interviewer style
 - Asks thoughtful follow-up questions
 - Relates content to broader implications
@@ -1958,7 +1958,7 @@ def synthesize_full_podcast(segments: List[TTSSegment]) -> tuple[bytes, float]:
     client = get_azure_tts_client()
     
     # Voice assignments (alternating for natural conversation)
-    host_voice = "coral"  # Female voice for host
+    host_voice = "nova"  # Female voice for host
     guest_voice = "onyx"  # Male voice for guest
     
     print(f"🎙️ Generating {len(segments)} segments with alternating voices...")
