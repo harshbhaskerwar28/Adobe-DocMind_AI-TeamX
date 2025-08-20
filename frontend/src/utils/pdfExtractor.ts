@@ -152,7 +152,7 @@ The PDF extraction service is not reachable. This could be due to:
 - CORS configuration issues  
 - Network connectivity problems
 
-Please ensure the backend is running on http://localhost:8000
+Please ensure the backend is running on ${API_BASE_URL}
 
 To start the backend:
 cd backend  
@@ -168,7 +168,7 @@ python pdf_extractor.py`,
 
 ${errorMessage}
 
-backend is running at: http://localhost:8000
+backend is running at: ${API_BASE_URL}
 Please check the backend logs for more details.`,
       pages: 1,
       title: fileName.replace('.pdf', '')
