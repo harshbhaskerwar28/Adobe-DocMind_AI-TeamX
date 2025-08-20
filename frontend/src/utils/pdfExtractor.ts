@@ -1,6 +1,9 @@
 // PDF Text Extractor using FastAPI + PyMuPDF
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = (
+  (import.meta as any)?.env?.VITE_API_BASE_URL ||
+  (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:8080')
+).replace(/\/$/, '');
 
 // Add a simple connectivity test function
 export async function testbackendConnection(): Promise<boolean> {
@@ -79,7 +82,9 @@ export async function extractPDFContent(file: File): Promise<PDFContent> {
 
 backend not running. Start with:
 cd backend
-python pdf_extractor.py`,
+python pdf_extractor.py
+
+Please ensure the backend is running on ${API_BASE_URL}`,
       pages: 1,
       title: file.name.replace('.pdf', '')
     };
