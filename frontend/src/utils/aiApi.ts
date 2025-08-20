@@ -163,7 +163,7 @@ class AIApiClient {
         }
         // Check for common network errors
         if (error.message.includes('fetch') || error.message.includes('NetworkError')) {
-          throw new Error('Unable to connect to AI backend. Please ensure the backend server is running on http://localhost:8000');
+          throw new Error(`Unable to connect to AI backend. Please ensure the backend server is running at ${this.baseUrl}`);
         }
         if (error.message.includes('timeout')) {
           throw new Error('Request timed out. The AI analysis is taking too long. Please try again.');
@@ -403,7 +403,7 @@ class AIApiClient {
       // Add more specific error context
       if (error?.message?.includes('Failed to fetch') || error?.message?.includes('fetch')) {
         console.error("🗑️ API: This appears to be a network connectivity issue. Is the FastAPI server running?");
-        throw new Error(`Cannot connect to FastAPI server at ${this.baseUrl}. Please ensure the backend server is running on http://localhost:8000`);
+        throw new Error(`Cannot connect to FastAPI server at ${this.baseUrl}. Please ensure the backend server is running.`);
       } else if (error?.status === 404) {
         console.error("🗑️ API: Clear endpoint not found. Check if /clear-vector-db endpoint exists.");
         throw new Error("Clear database endpoint not found. Please check if the backend server has the latest code.");
