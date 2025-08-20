@@ -2,6 +2,8 @@
 
 <div align="center">
 
+🎥 Demo Video](https://drive.google.com/file/d/1DOhQqFFGih0hsMtsBjMiTs4lNgXOkOjr/view?usp=sharing
+
 ![DocMind AI Logo](https://img.shields.io/badge/DocMind-AI%20Powered-blue?style=for-the-badge&logo=artificial-intelligence)
 ![Python](https://img.shields.io/badge/Python-3.11+-green?style=for-the-badge&logo=python)
 ![React](https://img.shields.io/badge/React-18+-blue?style=for-the-badge&logo=react)
@@ -686,3 +688,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **AI-Powered Document Analysis Platform**
 
 </div>
+
