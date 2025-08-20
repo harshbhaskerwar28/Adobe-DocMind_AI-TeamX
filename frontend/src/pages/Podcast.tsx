@@ -304,7 +304,7 @@ ${selectedPodcast.script}`;
       const response = await aiApi.generateTTSPodcast(podcastContent);
       
       console.log('🎙️ TTS generated successfully:', response);
-      setTtsAudioUrl(`http://localhost:8000${response.audio_url}`);
+      setTtsAudioUrl(`${window.location.origin}${response.audio_url}`);
       setDuration(response.duration_seconds);
       
       showSuccess(`Podcast audio generated successfully! (${response.duration_seconds}s)`);
