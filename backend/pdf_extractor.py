@@ -1942,7 +1942,7 @@ def synthesize_full_podcast(segments: List[TTSSegment]) -> tuple[bytes, float]:
     client = get_azure_tts_client()
     
     # Voice assignments (alternating for natural conversation)
-    host_voice = "nova"  # Female voice for host
+    host_voice = "coral"  # Female voice for host
     guest_voice = "onyx"  # Male voice for guest
     
     print(f"🎙️ Generating {len(segments)} segments with alternating voices...")
