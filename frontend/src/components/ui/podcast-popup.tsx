@@ -201,7 +201,7 @@ export function PodcastPopup({ isVisible, onClose, selectedText, onPodcastGenera
     if (!podcastData) return;
     
     const link = document.createElement('a');
-    link.href = `http://localhost:8000${podcastData.audio_url}`;
+    link.href = `${window.location.origin}${podcastData.audio_url}`;
     link.download = `${podcastData.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.mp3`;
     document.body.appendChild(link);
     link.click();
@@ -294,7 +294,7 @@ export function PodcastPopup({ isVisible, onClose, selectedText, onPodcastGenera
             {/* Hidden audio element */}
             <audio 
               ref={audioRef} 
-              src={`http://localhost:8000${podcastData.audio_url}`}
+              src={`${window.location.origin}${podcastData.audio_url}`}
               preload="metadata"
             />
 
