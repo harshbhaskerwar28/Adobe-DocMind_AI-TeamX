@@ -679,7 +679,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**Made with ❤️ by TeamX - Adobe Finals 2024**
+**Made with ❤️ by TeamX - Adobe Finals 2025**
 
 [![GitHub stars](https://img.shields.io/github/stars/yourusername/adobe-finals-teamx?style=social)](https://github.com/yourusername/adobe-finals-teamx)
 [![GitHub forks](https://img.shields.io/github/forks/yourusername/adobe-finals-teamx?style=social)](https://github.com/yourusername/adobe-finals-teamx)
@@ -688,6 +688,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **AI-Powered Document Analysis Platform**
 
 </div>
+
 
 
 
