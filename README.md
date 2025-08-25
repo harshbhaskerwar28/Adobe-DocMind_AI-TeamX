@@ -326,11 +326,11 @@ npm install
 npm run dev
 ```
 
-The frontend will start on `http://localhost:5173`
+The frontend will start on `http://localhost:8080`
 
 #### 4️⃣ Access the Application
 
-Open your browser and navigate to `http://localhost:5173`
+Open your browser and navigate to `http://localhost:8080`
 
 ---
 
@@ -688,6 +688,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **AI-Powered Document Analysis Platform**
 
 </div>
+
 
 
 
