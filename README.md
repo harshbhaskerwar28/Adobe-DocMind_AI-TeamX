@@ -188,7 +188,7 @@ Adobe-Finals-TeamX/
 ## 🚀 Quick Start
 
 ### 🔑 Adobe Embed API Setup (Important!)
-Before running the Docker container, ensure your Adobe Embed API key is properly configured:
+Before running the Docker container, ensure your Adobe Embed API key is properly configured:-
 
 1. **Get Adobe Embed API Key**: Visit [Adobe Embed API](https://www.adobe.com/go/dcsdks_credentials)
 2. **Configure Domain**: Add `localhost` to your Adobe API key's allowed domains
@@ -688,6 +688,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **AI-Powered Document Analysis Platform**
 
 </div>
+
 
 
 
